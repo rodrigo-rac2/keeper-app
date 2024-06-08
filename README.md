@@ -1,14 +1,20 @@
 # PUC-Rio - Especialização em Desenvolvimento Web Full Stack
-## Desenvolvimento Front-end avançado
-## Aluno: Rodrigo Alves Costa
+> Disciplina: Desenvolvimento Front-end Avançado
+> Aluno: Rodrigo Alves Costa
 
 # Keeper App
 
-Keeper App is a simple note taking app built with React. It allows users to create, read, update, and delete notes.
+Keeper App is a simple note taking app built with React. It allows users to create, read, update, and delete notes. The app also has a simple access control system, where only the user who created a note can edit or delete it. The user can edit their own profile by clicking on the profile icon in the top right corner of the screen.
+
+For testing purposes, feel free to use the following credentials to view notes assigned to these users:
+- Email: jon@doe.com / Password: 123456
+- Email: jane@doe.com / Password: 123456
+- Email: admin@keeper.app / Password: root
 
 # Technologies
 - React
 - Icon8 and React Icons
+- Vitest
 
 # How to run
 1. Clone the repository
