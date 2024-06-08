@@ -24,3 +24,12 @@ For testing purposes, feel free to use the following credentials to view notes a
 
 # Live demo
 You can see a live demo of the app [here](https://rodrigoalvescosta.github.io/keeper-app/)
+
+# Screenshots
+![Main page]()
+![Registration page]()
+![Home page]()
+![Create a new note]()
+![Edit a note]()
+![Delete a note]()
+![Profile page]()
