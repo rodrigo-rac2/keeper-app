@@ -7,13 +7,13 @@ import notes from "./modules/notes";
 
 function App() {
   return (
-    <>
+    <div data-testid="app-container">
       <Header />
       {notes.map(note => 
         <Note key={note.key} title={note.title} content={note.content}/>
       )}
       <Footer />
-    </>
+    </div>
   );
 }
 
