@@ -1,3 +1,4 @@
+// src/components/App/App.jsx
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "../Footer/Footer";
@@ -110,26 +111,24 @@ function App() {
       return;
     }
     users.push(newUser);
-    setErrorMessage(""); // Clear error message on successful registration
-    setSuccessMessage("Registration successful!"); // Set success message
+    setErrorMessage("");
+    setSuccessMessage("Registration successful!");
+
+    setTimeout(() => {
+      setSuccessMessage("");
+      setIsRegistering(false);
+    }, 3000);
   };
 
   const handleEditProfile = (updatedUser) => {
     clearMessages();
-
     setUser(updatedUser);
-    setEditingProfile(false);
-    setErrorMessage("");
-    setSuccessMessage("Profile updated successfully!");
-  };
+    setSuccessMessage("User updated!");
 
-  const showSuccessMessage = () => {
-    setSuccessMessage("");
-    if (isRegistering) {
-      setIsRegistering(false);
-    } else if (editingProfile) {
+    setTimeout(() => {
+      setSuccessMessage("");
       setEditingProfile(false);
-    }
+    }, 3000);
   };
 
   if (!user && !isRegistering) {
@@ -141,7 +140,7 @@ function App() {
             clearMessages();
             setIsRegistering(true);
           }}
-          errorMessage={errorMessage} // Pass the error message here
+          errorMessage={errorMessage}
         />
       </div>
     );
@@ -159,8 +158,7 @@ function App() {
           errorMessage={errorMessage}
           successMessage={successMessage}
           setErrorMessage={setErrorMessage}
-          showSuccessMessage={showSuccessMessage}
-          isEditingProfile={false} // Not editing profile
+          isEditingProfile={false}
         />
       </div>
     );
@@ -180,8 +178,7 @@ function App() {
           errorMessage={errorMessage}
           successMessage={successMessage}
           setErrorMessage={setErrorMessage}
-          showSuccessMessage={showSuccessMessage}
-          isEditingProfile={true} // Editing profile
+          isEditingProfile={true}
         />
       </div>
     );

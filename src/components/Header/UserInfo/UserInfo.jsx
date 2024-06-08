@@ -13,14 +13,14 @@ function UserInfo({ user, onLogout, onEditProfile }) {
   return (
     <div className="user-info">
       <div className="user-details" onClick={toggleModal}>
-        <span>{user.fullname}</span>
+        <span data-testid="modal-user-fullname">{user.fullname}</span>
         <img
           src="./src/assets/icons8-user-96.png"
           alt="User Icon"
           className="user-icon"
         />
       </div>
-      <button onClick={onLogout} className="logout-button">
+      <button data-testid="modal-logout-btn" onClick={onLogout} className="logout-button">
         Logout
       </button>
       {showModal && (

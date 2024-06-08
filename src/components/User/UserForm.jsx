@@ -11,7 +11,6 @@ function UserForm({
   successMessage,
   errorMessage,
   setErrorMessage,
-  showSuccessMessage,
   isEditingProfile,
 }) {
   const [email, setEmail] = useState(user ? user.email : "");
@@ -19,6 +18,8 @@ function UserForm({
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showTempMessage, setShowTempMessage] = useState(false);
+  const [tempMessage, setTempMessage] = useState("");
 
   useEffect(() => {
     if (isEditing) {
@@ -36,6 +37,18 @@ function UserForm({
       return;
     }
     onSave({ email, fullname, password });
+    setTempMessage(
+      isEditingProfile ? "User Updated" : "Registration Successful"
+    );
+    setShowTempMessage(true);
+    setTimeout(() => {
+      setShowTempMessage(false);
+    }, 3000);
+  };
+
+  const handleCancel = () => {
+    onCancel();
+    setShowTempMessage(false); // Reset the temp message state on cancel
   };
 
   const toggleShowPassword = () => {
@@ -45,10 +58,11 @@ function UserForm({
   return (
     <div className="user-form">
       <h2>Keeper App</h2>
+      {showTempMessage && <div className="temp-message">{tempMessage}</div>}
       {successMessage ? (
         <div>
           <p className="success-message">{successMessage}</p>
-          <p className="return-link" onClick={showSuccessMessage}>
+          <p data-testid="confirmation-return-link" className="return-link">
             {isEditingProfile ? "Return to Keeper App" : "Return to Login"}
           </p>
         </div>
@@ -81,7 +95,11 @@ function UserForm({
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <span onClick={toggleShowPassword} className="toggle-password">
+            <span
+              data-testid="toggle-password-span"
+              onClick={toggleShowPassword}
+              className="toggle-password"
+            >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
@@ -99,7 +117,7 @@ function UserForm({
           </div>
           <div className="user-form-buttons">
             <button type="submit">Save</button>
-            <button type="button" className="cancel-button" onClick={onCancel}>
+            <button type="button" className="cancel-button" onClick={handleCancel}>
               Cancel
             </button>
           </div>

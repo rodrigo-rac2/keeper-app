@@ -35,7 +35,7 @@ function Login({ onLogin, onRegister, errorMessage }) {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <span onClick={toggleShowPassword} className="toggle-password">
+          <span data-testid="toggle-password-span" onClick={toggleShowPassword} className="toggle-password">
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
