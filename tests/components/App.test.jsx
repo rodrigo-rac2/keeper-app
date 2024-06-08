@@ -1,7 +1,9 @@
+// tests/components/App.test.jsx
+
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, it, expect, beforeEach } from "vitest";
-import App from "../App";
+import App from "../../src/components/App/App";
 
 describe("App", () => {
   beforeEach(() => {

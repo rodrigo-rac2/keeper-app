@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./UserForm.css";
+import Footer from "../Footer/Footer";
 
 function UserForm({
   user,
@@ -105,6 +106,7 @@ function UserForm({
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
       )}
+      <Footer />
     </div>
   );
 }

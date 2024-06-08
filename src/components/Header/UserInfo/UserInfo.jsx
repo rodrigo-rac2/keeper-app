@@ -1,7 +1,7 @@
 // src/components/UserInfo.jsx
 import React, { useState } from "react";
 import "./UserInfo.css";
-import ProfileModal from "./ProfileModal";
+import ProfileModal from "./Modals/ProfileModal";
 
 function UserInfo({ user, onLogout, onEditProfile }) {
   const [showModal, setShowModal] = useState(false);

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Note from "./components/Note";
-import Button from "./components/Button";
-import MainPage from "./components/MainPage";
-import UserForm from "./components/UserForm";
-import notesData from "../fixtures/notes.json"; // Update path if necessary
-import users from "../fixtures/users.json"; // Update path if necessary
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Note from "../Note/Note";
+import Button from "../Button/Button";
+import MainPage from "../MainPage/MainPage";
+import UserForm from "../User/UserForm";
+import notesData from "../../../fixtures/notes.json"; // Update path if necessary
+import users from "../../../fixtures/users.json"; // Update path if necessary
 
 function App() {
   const [notes, setNotes] = useState([]);
