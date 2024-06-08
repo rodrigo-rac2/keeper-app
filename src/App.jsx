@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -6,8 +6,8 @@ import Note from "./components/Note";
 import Button from "./components/Button";
 import MainPage from "./components/MainPage";
 import UserForm from "./components/UserForm";
-import notesData from "./modules/notes";
-import users from "./modules/users"; // Import your users data
+import notesData from "../fixtures/notes.json"; // Update path if necessary
+import users from "../fixtures/users.json"; // Update path if necessary
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -18,6 +18,17 @@ function App() {
   const [editNote, setEditNote] = useState({ title: "", content: "" });
   const [isRegistering, setIsRegistering] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    setNotes(notesData);
+  }, []);
+
+  const clearMessages = () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+  };
 
   const handleAddNote = () => {
     setAddingNote(true);
@@ -38,6 +49,7 @@ function App() {
   };
 
   const handleLogin = (loggedInUser) => {
+    clearMessages();
     const foundUser = users.find(
       (user) =>
         user.email === loggedInUser.email &&
@@ -46,17 +58,21 @@ function App() {
     if (foundUser) {
       setUser(foundUser);
       setNotes(notesData.filter((note) => note.user === foundUser.email));
+      setErrorMessage(""); // Clear error message on successful login
     } else {
-      alert("Invalid credentials");
+      setErrorMessage("Invalid credentials");
     }
   };
 
   const handleLogout = () => {
+    clearMessages();
     setUser(null);
     setNotes([]);
   };
 
   const handleEditNote = (noteKey) => {
+    clearMessages();
+
     const noteToEdit = notes.find((note) => note.key === noteKey);
     setEditNote({
       title: noteToEdit.title,
@@ -81,31 +97,53 @@ function App() {
   };
 
   const handleDeleteNote = (noteKey) => {
+    clearMessages();
+
     setNotes(notes.filter((note) => note.key !== noteKey));
   };
 
   const handleRegister = (newUser) => {
+    clearMessages();
+
     if (users.some((user) => user.email === newUser.email)) {
-      alert("Email already exists");
+      setErrorMessage("Email already exists");
       return;
     }
     users.push(newUser);
-    setIsRegistering(false);
-    alert("Registration successful!");
+    setErrorMessage(""); // Clear error message on successful registration
+    setSuccessMessage("Registration successful!"); // Set success message
   };
 
   const handleEditProfile = (updatedUser) => {
+    clearMessages();
+
     setUser(updatedUser);
     setEditingProfile(false);
-    alert("Profile updated successfully!");
+    setErrorMessage("");
+    setSuccessMessage("Profile updated successfully!");
+  };
+
+  const showSuccessMessage = () => {
+    setSuccessMessage("");
+    if (isRegistering) {
+      setIsRegistering(false);
+    } else if (editingProfile) {
+      setEditingProfile(false);
+    }
   };
 
   if (!user && !isRegistering) {
     return (
-      <MainPage
-        onLogin={handleLogin}
-        onRegister={() => setIsRegistering(true)}
-      />
+      <div>
+        <MainPage
+          onLogin={handleLogin}
+          onRegister={() => {
+            clearMessages();
+            setIsRegistering(true);
+          }}
+          errorMessage={errorMessage} // Pass the error message here
+        />
+      </div>
     );
   }
 
@@ -114,7 +152,15 @@ function App() {
       <div className="modal">
         <UserForm
           onSave={handleRegister}
-          onCancel={() => setIsRegistering(false)}
+          onCancel={() => {
+            clearMessages();
+            setIsRegistering(false);
+          }}
+          errorMessage={errorMessage}
+          successMessage={successMessage}
+          setErrorMessage={setErrorMessage}
+          showSuccessMessage={showSuccessMessage}
+          isEditingProfile={false} // Not editing profile
         />
       </div>
     );
@@ -126,8 +172,16 @@ function App() {
         <UserForm
           user={user}
           onSave={handleEditProfile}
-          onCancel={() => setEditingProfile(false)}
+          onCancel={() => {
+            clearMessages();
+            setEditingProfile(false);
+          }}
           isEditing
+          errorMessage={errorMessage}
+          successMessage={successMessage}
+          setErrorMessage={setErrorMessage}
+          showSuccessMessage={showSuccessMessage}
+          isEditingProfile={true} // Editing profile
         />
       </div>
     );
@@ -135,7 +189,14 @@ function App() {
 
   return (
     <div data-testid="app-container">
-      <Header user={user} onLogout={handleLogout} />
+      <Header
+        user={user}
+        onLogout={handleLogout}
+        onEditProfile={() => {
+          clearMessages();
+          setEditingProfile(true);
+        }}
+      />
       <div className="notes-container">
         {notes.map((note) =>
           editingNote === note.key ? (

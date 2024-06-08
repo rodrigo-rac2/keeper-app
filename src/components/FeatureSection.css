@@ -1,0 +1,40 @@
+/* src/components/FeatureSection.css */
+.feature-section {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.feature-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.feature-section p {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.images-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Increased gap to double the previous space */
+}
+
+.feature-image {
+  max-width: 300px; /* Set the maximum width */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  flex: 1;
+}
+
+.images-container img {
+  width: 300px;
+  height: 300px;
+  margin: 0 10px;
+}

@@ -3,12 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  position: relative;
 }
 
 .user-details {
   display: flex;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 }
 
 .user-icon {
@@ -21,12 +23,39 @@
   border: none;
   color: #b3913b;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 0.8em; 
   padding: 2px;
-  margin-top: 2px;
+  margin-top: 2px; 
   align-self: flex-end;
 }
 
 .logout-button:hover {
   color: #e0a800;
+}
+
+.profile-modal {
+  position: absolute;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 5px;
+  top: 40px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  color: #b3913b;
+  cursor: pointer;
+  font-size: 0.9em; 
+  padding: 5px 10px;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.profile-button:hover {
+  background-color: #f0f0f0;
 }

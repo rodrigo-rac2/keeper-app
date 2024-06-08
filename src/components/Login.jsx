@@ -1,11 +1,10 @@
-// src/components/Login.jsx
-import React, { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import './Login.css';
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "./Login.css";
 
-function Login({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login({ onLogin, onRegister, errorMessage }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
@@ -26,19 +25,25 @@ function Login({ onLogin }) {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <div className="password-container">
           <input
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <span onClick={toggleShowPassword} className="toggle-password">
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Login</button>
+        <p className="signup-link" onClick={onRegister}>
+          Not registered? Sign up now!
+        </p>
       </form>
     </div>
   );

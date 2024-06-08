@@ -3,11 +3,11 @@ import React from "react";
 import UserInfo from "./UserInfo";
 import "./Header.css";
 
-function Header({ user, onLogout }) {
+function Header({ user, onLogout, onEditProfile }) {
   return (
     <header>
       <h1>Keeper App</h1>
-      {user && <UserInfo user={user} onLogout={onLogout} />}
+      {user && <UserInfo user={user} onLogout={onLogout} onEditProfile={onEditProfile} />}
     </header>
   );
 }

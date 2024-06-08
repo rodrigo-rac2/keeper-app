@@ -2,11 +2,15 @@
 import React from "react";
 import "./ProfileModal.css";
 
-function ProfileModal({ onEditProfile, onLogout }) {
+function ProfileModal({ user, onEditProfile, onLogout }) {
   return (
     <div className="profile-modal">
-      <button onClick={onEditProfile}>Edit Profile</button>
-      <button onClick={onLogout}>Logout</button>
+      <h2>Keeper App Account</h2>
+      <p>{user.fullname}</p>
+      <div className="modal-buttons">
+        <button onClick={onEditProfile}>Edit Profile</button>
+        <button onClick={onLogout}>Logout</button>
+      </div>
     </div>
   );
 }

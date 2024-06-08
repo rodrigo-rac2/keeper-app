@@ -8,13 +8,13 @@ Keeper App is a simple note taking app built with React. It allows users to crea
 
 # Technologies
 - React
-- Material-UI
+- Icon8 and React Icons
 
 # How to run
 1. Clone the repository
 2. Run `npm install` to install the dependencies
-3. Run `npm start` to start the development server
-4. Open `http://localhost:3000` in your browser
+3. Run `npm run dev` to start the development server
+4. Open `http://localhost:5173` in your browser
 
 # Live demo
 You can see a live demo of the app [here](https://rodrigoalvescosta.github.io/keeper-app/)
