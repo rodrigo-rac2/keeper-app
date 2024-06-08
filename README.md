@@ -26,10 +26,19 @@ For testing purposes, feel free to use the following credentials to view notes a
 You can see a live demo of the app [here](https://rodrigoalvescosta.github.io/keeper-app/)
 
 # Screenshots
-![Main page]()
-![Registration page]()
-![Home page]()
-![Create a new note]()
-![Edit a note]()
-![Delete a note]()
-![Profile page]()
+> Main page
+![Main page](src/assets/readme/main-page.png)
+> Registration page (sign up)
+![Sign up page](src/assets/readme/sign-up-page.png)
+> Home page after login
+![Home page](src/assets/readme/home-page.png)
+> Create a new note
+![Create a new note](src/assets/readme/create-note.png)
+> Edit a note
+![Edit a note](src/assets/readme/edit-note.png)
+> Delete a note
+![Delete a note](src/assets/readme/delete-note.png)
+> Click on user's name and view options
+![Profile page modal](src/assets/readme/profile-page-1.png)
+> Edit user's profile (email is disabled)
+![Profile page edit (disabled email)](src/assets/readme/profile-page-2.png)
