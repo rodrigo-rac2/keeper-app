@@ -22,9 +22,13 @@ header {
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
+  margin-left: 10px;
   color: #fff;
   font-family: "McLaren", cursive;
   font-weight: 200;
@@ -52,27 +56,6 @@ footer p {
   margin: auto;
 }
 
-.note {
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
-  padding: 10px;
-  width: 240px;
-  margin: 16px;
-}
-
-.note h1 {
-  font-size: 1.18em;
-  margin-bottom: 6px;
-}
-
-.note p {
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
 .add-note-card {
   display: flex;
   justify-content: center;
@@ -85,13 +68,16 @@ footer p {
   color: #ccc;
 }
 
-.add-note-form {
+.add-note-form,
+.edit-note-form {
   display: flex;
   flex-direction: column;
 }
 
 .add-note-form input,
-.add-note-form textarea {
+.edit-note-form input,
+.add-note-form textarea,
+.edit-note-form textarea {
   margin-bottom: 10px;
   padding: 8px;
   font-size: 1em;
@@ -99,8 +85,18 @@ footer p {
   box-sizing: border-box;
 }
 
-.add-note-buttons {
+.add-note-buttons,
+.edit-note-buttons {
   display: flex;
   gap: 10px;
   justify-content: center;
+  margin-top: auto;
+}
+
+.edit-note-form textarea {
+  flex-grow: 1;
+}
+
+.edit-note-form {
+  min-height: 200px; /* Ensure the edited note form doesn't shrink */
 }

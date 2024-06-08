@@ -1,28 +1,53 @@
 const notes = [
     {
-        key: 1,
-        title: "Delegation",
-        content:
-            "Q. How many programmers does it take to change a light bulb? A. None – It’s a hardware problem",
+      key: 1,
+      title: "Delegation",
+      user: "jon@doe.com",
+      content: "Q. How many programmers does it take to change a light bulb? A. None – It’s a hardware problem",
     },
     {
-        key: 2,
-        title: "Loops",
-        content:
-            "How to keep a programmer in the shower forever. Show him the shampoo bottle instructions: Lather. Rinse. Repeat.",
+      key: 2,
+      title: "Loops",
+      user: "jon@doe.com",
+      content: "How to keep a programmer in the shower forever. Show him the shampoo bottle instructions: Lather. Rinse. Repeat.",
     },
     {
-        key: 3,
-        title: "Arrays",
-        content:
-            "Q. Why did the programmer quit his job? A. Because he didn't get arrays.",
+      key: 3,
+      title: "Arrays",
+      user: "jon@doe.com",
+      content: "Q. Why did the programmer quit his job? A. Because he didn't get arrays.",
     },
     {
-        key: 4,
-        title: "Hardware vs. Software",
-        content:
-            "What's the difference between hardware and software? You can hit your hardware with a hammer, but you can only curse at your software.",
+      key: 4,
+      title: "Hardware vs. Software",
+      user: "jon@doe.com",
+      content: "What's the difference between hardware and software? You can hit your hardware with a hammer, but you can only curse at your software.",
     },
-];
-
-export default notes;
+    {
+      key: 5,
+      title: "Debugging",
+      user: "jane@doe.com",
+      content: "Debugging is like being the detective in a crime movie where you are also the murderer.",
+    },
+    {
+      key: 6,
+      title: "Algorithm",
+      user: "jane@doe.com",
+      content: "Algorithm: Word used by programmers when they do not want to explain what they did.",
+    },
+    {
+      key: 7,
+      title: "Programmer’s Life",
+      user: "admin@keeper.app",
+      content: "Programmer: A machine that turns coffee into code.",
+    },
+    {
+      key: 8,
+      title: "User Error",
+      user: "admin@keeper.app",
+      content: "Most of the software problems are not bugs, they are user errors.",
+    }
+  ];
+  
+  export default notes;
+  

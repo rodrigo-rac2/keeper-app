@@ -1,7 +1,8 @@
+// src/components/Button.jsx
 import React from "react";
 import "./Button.css";
 
-const Button = ({ onClick, children, className = "" }) => {
+function Button({ onClick, children, className = "" }) {
   return (
     <button className={`button ${className}`} onClick={onClick}>
       {children}
