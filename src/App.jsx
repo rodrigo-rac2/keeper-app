@@ -27,7 +27,7 @@ function App() {
   };
 
   return (
-    <>
+    <div data-testid="app-container">
       <Header />
       <div className="notes-container">
         {notes.map(note => (
@@ -58,7 +58,7 @@ function App() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
