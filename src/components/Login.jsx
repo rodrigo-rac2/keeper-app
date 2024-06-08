@@ -1,26 +1,25 @@
-import React, { useState } from "react";
-import users from "../modules/users";
-import "./Login.css";
+// src/components/Login.jsx
+import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import './Login.css';
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const user = users.find(user => user.email === email && user.password === password);
-    if (user) {
-      onLogin(user);
-    } else {
-      setError("Invalid email or password");
-    }
+    onLogin({ email, password });
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
-    <div className="login-container">
+    <div className="login-form">
       <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -28,16 +27,21 @@ function Login({ onLogin }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="password-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span onClick={toggleShowPassword} className="toggle-password">
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
         <button type="submit">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;

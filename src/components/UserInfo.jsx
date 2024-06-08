@@ -7,11 +7,17 @@ function UserInfo({ user, onLogout }) {
     <div className="user-info">
       <div className="user-details">
         <span>{user.name}</span>
-        <img src="./src/assets/icons8-user-96.png" alt="User Icon" className="user-icon" />
+        <img
+          src="./src/assets/icons8-user-96.png"
+          alt="User Icon"
+          className="user-icon"
+        />
       </div>
-      <button onClick={onLogout} className="logout-button">Logout</button>
+      <button onClick={onLogout} className="logout-button">
+        Logout
+      </button>
     </div>
   );
-};
+}
 
 export default UserInfo;

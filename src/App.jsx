@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
@@ -6,7 +5,9 @@ import Header from "./components/Header";
 import Note from "./components/Note";
 import Button from "./components/Button";
 import MainPage from "./components/MainPage";
+import UserForm from "./components/UserForm";
 import notesData from "./modules/notes";
+import users from "./modules/users"; // Import your users data
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -15,13 +16,18 @@ function App() {
   const [user, setUser] = useState(null);
   const [editingNote, setEditingNote] = useState(null);
   const [editNote, setEditNote] = useState({ title: "", content: "" });
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [editingProfile, setEditingProfile] = useState(false);
 
   const handleAddNote = () => {
     setAddingNote(true);
   };
 
   const handleSaveNote = () => {
-    setNotes([...notes, { key: notes.length + 1, ...newNote, user: user.email }]);
+    setNotes([
+      ...notes,
+      { key: notes.length + 1, ...newNote, user: user.email },
+    ]);
     setAddingNote(false);
     setNewNote({ title: "", content: "" });
   };
@@ -32,8 +38,17 @@ function App() {
   };
 
   const handleLogin = (loggedInUser) => {
-    setUser(loggedInUser);
-    setNotes(notesData.filter(note => note.user === loggedInUser.email));
+    const foundUser = users.find(
+      (user) =>
+        user.email === loggedInUser.email &&
+        user.password === loggedInUser.password
+    );
+    if (foundUser) {
+      setUser(foundUser);
+      setNotes(notesData.filter((note) => note.user === foundUser.email));
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   const handleLogout = () => {
@@ -42,18 +57,20 @@ function App() {
   };
 
   const handleEditNote = (noteKey) => {
-    const noteToEdit = notes.find(note => note.key === noteKey);
+    const noteToEdit = notes.find((note) => note.key === noteKey);
     setEditNote({
       title: noteToEdit.title,
-      content: noteToEdit.content
+      content: noteToEdit.content,
     });
     setEditingNote(noteKey);
   };
 
   const handleSaveEditNote = () => {
-    setNotes(notes.map(note => 
-      note.key === editingNote ? { ...note, ...editNote } : note
-    ));
+    setNotes(
+      notes.map((note) =>
+        note.key === editingNote ? { ...note, ...editNote } : note
+      )
+    );
     setEditingNote(null);
     setEditNote({ title: "", content: "" });
   };
@@ -64,34 +81,87 @@ function App() {
   };
 
   const handleDeleteNote = (noteKey) => {
-    setNotes(notes.filter(note => note.key !== noteKey));
+    setNotes(notes.filter((note) => note.key !== noteKey));
   };
 
-  if (!user) {
-    return <MainPage onLogin={handleLogin} />;
+  const handleRegister = (newUser) => {
+    if (users.some((user) => user.email === newUser.email)) {
+      alert("Email already exists");
+      return;
+    }
+    users.push(newUser);
+    setIsRegistering(false);
+    alert("Registration successful!");
+  };
+
+  const handleEditProfile = (updatedUser) => {
+    setUser(updatedUser);
+    setEditingProfile(false);
+    alert("Profile updated successfully!");
+  };
+
+  if (!user && !isRegistering) {
+    return (
+      <MainPage
+        onLogin={handleLogin}
+        onRegister={() => setIsRegistering(true)}
+      />
+    );
+  }
+
+  if (isRegistering) {
+    return (
+      <div className="modal">
+        <UserForm
+          onSave={handleRegister}
+          onCancel={() => setIsRegistering(false)}
+        />
+      </div>
+    );
+  }
+
+  if (editingProfile) {
+    return (
+      <div className="modal">
+        <UserForm
+          user={user}
+          onSave={handleEditProfile}
+          onCancel={() => setEditingProfile(false)}
+          isEditing
+        />
+      </div>
+    );
   }
 
   return (
     <div data-testid="app-container">
       <Header user={user} onLogout={handleLogout} />
       <div className="notes-container">
-        {notes.map(note => (
+        {notes.map((note) =>
           editingNote === note.key ? (
             <div key={note.key} className="note edit-note-form">
               <input
                 type="text"
                 placeholder="Title"
                 value={editNote.title}
-                onChange={(e) => setEditNote({ ...editNote, title: e.target.value })}
+                onChange={(e) =>
+                  setEditNote({ ...editNote, title: e.target.value })
+                }
               />
               <textarea
                 placeholder="Content"
                 value={editNote.content}
-                onChange={(e) => setEditNote({ ...editNote, content: e.target.value })}
+                onChange={(e) =>
+                  setEditNote({ ...editNote, content: e.target.value })
+                }
               />
               <div className="edit-note-buttons">
-                <Button className="save" onClick={handleSaveEditNote}>Save</Button>
-                <Button className="cancel" onClick={handleCancelEditNote}>Cancel</Button>
+                <Button className="save" onClick={handleSaveEditNote}>
+                  Save
+                </Button>
+                <Button className="cancel" onClick={handleCancelEditNote}>
+                  Cancel
+                </Button>
               </div>
             </div>
           ) : (
@@ -103,7 +173,7 @@ function App() {
               onDelete={() => handleDeleteNote(note.key)}
             />
           )
-        ))}
+        )}
         <div className="note add-note-card">
           {addingNote ? (
             <div className="add-note-form">
@@ -111,20 +181,30 @@ function App() {
                 type="text"
                 placeholder="Title"
                 value={newNote.title}
-                onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, title: e.target.value })
+                }
               />
               <textarea
                 placeholder="Content"
                 value={newNote.content}
-                onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, content: e.target.value })
+                }
               />
               <div className="add-note-buttons">
-                <Button className="save" onClick={handleSaveNote}>Save</Button>
-                <Button className="cancel" onClick={handleCancelNote}>Cancel</Button>
+                <Button className="save" onClick={handleSaveNote}>
+                  Save
+                </Button>
+                <Button className="cancel" onClick={handleCancelNote}>
+                  Cancel
+                </Button>
               </div>
             </div>
           ) : (
-            <div className="add-new-note" onClick={handleAddNote}>+</div>
+            <div className="add-new-note" onClick={handleAddNote}>
+              +
+            </div>
           )}
         </div>
       </div>

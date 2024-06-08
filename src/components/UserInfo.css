@@ -1,3 +1,4 @@
+/* src/components/UserInfo.css */
 .user-info {
   display: flex;
   flex-direction: column;
@@ -20,9 +21,9 @@
   border: none;
   color: #b3913b;
   cursor: pointer;
-  font-size: 0.8em; 
+  font-size: 0.8em;
   padding: 2px;
-  margin-top: 2px; 
+  margin-top: 2px;
   align-self: flex-end;
 }
 
