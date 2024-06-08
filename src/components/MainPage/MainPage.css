@@ -1,0 +1,56 @@
+/* src/components/MainPage.css */
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.intro-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 40px;
+}
+
+.welcome-section {
+  max-width: 50%;
+  margin-right: 100px; /* Increased margin */
+}
+
+.login-container {
+  max-width: 50%;
+}
+
+.features-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-section {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .intro-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome-section {
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .login-container {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "fullname": "John Doe",
+    "email": "jon@doe.com",
+    "password": "123456"
+  },
+  {
+    "id": 2,
+    "fullname": "Jane Doe",
+    "email": "jane@doe.com",
+    "password": "123456"
+  },
+  {
+    "id": 3,
+    "fullname": "Admin",
+    "email": "admin@keeper.app",
+    "password": "root"
+  }
+]

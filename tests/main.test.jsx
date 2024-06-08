@@ -1,3 +1,5 @@
+// tests/main.test.jsx
+
 import React from 'react';
 import { act, fireEvent } from '@testing-library/react'; // Added fireEvent import
 import { render, screen } from '@testing-library/react';
@@ -46,7 +48,7 @@ describe('main.tsx', () => {
 
     // Dynamically import the main file to trigger the render
     await act(async () => {
-      await import('../main'); // Adjust path if needed
+      await import('../src/main'); // Adjust path if needed
     });
 
     // Check for the main page content

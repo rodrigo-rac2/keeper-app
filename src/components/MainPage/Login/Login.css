@@ -1,0 +1,60 @@
+/* src/components/Login.css */
+.login-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px; /* Ensure there's enough space for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.login-form button {
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-form button:hover {
+  background: #e0a800;
+}
+
+.signup-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
