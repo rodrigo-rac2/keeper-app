@@ -18,23 +18,20 @@
   margin-bottom: 20px;
 }
 
-.images-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Increased gap to double the previous space */
+.carousel-container {
+  max-width: 500px; /* Adjusted max-width for smaller carousel */
+  margin: 0 auto;
 }
 
-.feature-image {
-  max-width: 300px; /* Set the maximum width */
-  height: auto;
+.custom-carousel .feature-image {
+  max-width: 100%;
+  max-height: 300px; /* Reduced max-height */
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-  flex: 1;
 }
 
-.images-container img {
-  width: 300px;
-  height: 300px;
-  margin: 0 10px;
+/* Ensure dots are centered below the carousel */
+.custom-carousel .carousel .control-dots {
+  bottom: 10px; 
 }
