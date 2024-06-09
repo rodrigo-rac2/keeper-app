@@ -35,7 +35,7 @@ describe("App", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
-    fireEvent.click(screen.getByText("+")); // Click the add note button
+    fireEvent.click(screen.getByText("+")); // Add note
 
     const titleInput = screen.getByPlaceholderText("Title");
     const contentTextarea = screen.getByPlaceholderText("Content");
@@ -59,7 +59,7 @@ describe("App", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
-    fireEvent.click(screen.getByText("+")); // Click the add note button
+    fireEvent.click(screen.getByText("+"));
 
     const titleInput = screen.getByPlaceholderText("Title");
     const contentTextarea = screen.getByPlaceholderText("Content");
@@ -71,11 +71,10 @@ describe("App", () => {
 
     expect(screen.queryByText("Test Title")).not.toBeInTheDocument();
     expect(screen.queryByText("Test Content")).not.toBeInTheDocument();
-    expect(screen.getByText("+")).toBeInTheDocument(); // The add note button should reappear
+    expect(screen.getByText("+")).toBeInTheDocument();
   });
 
   it("should edit an existing note", () => {
-    // Simulate login
     fireEvent.change(screen.getByPlaceholderText("Email"), {
       target: { value: "jon@doe.com" },
     });
@@ -85,7 +84,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
     const editButton = screen.getAllByAltText("Edit")[0];
-    fireEvent.click(editButton); // Click the edit note button
+    fireEvent.click(editButton); 
 
     const titleInput = screen.getByPlaceholderText("Title");
     const contentTextarea = screen.getByPlaceholderText("Content");
@@ -110,7 +109,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
     const editButton = screen.getAllByAltText("Edit")[0];
-    fireEvent.click(editButton); // Click the edit note button
+    fireEvent.click(editButton);
 
     const titleInput = screen.getByPlaceholderText("Title");
     const contentTextarea = screen.getByPlaceholderText("Content");
@@ -125,7 +124,6 @@ describe("App", () => {
   });
 
   it("should display profile modal when clicking user name", () => {
-    // Simulate login
     fireEvent.change(screen.getByPlaceholderText("Email"), {
       target: { value: "jon@doe.com" },
     });
@@ -156,8 +154,8 @@ describe("App", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
-    fireEvent.click(screen.getByText("John Doe")); // Click on the user name
-    fireEvent.click(screen.getByRole("button", { name: /edit profile/i })); // Click edit profile button
+    fireEvent.click(screen.getByText("John Doe")); 
+    fireEvent.click(screen.getByRole("button", { name: /edit profile/i }));
 
     fireEvent.change(screen.getByPlaceholderText("Full Name"), {
       target: { value: "" }, // Clear the full name to make it invalid
@@ -172,7 +170,6 @@ describe("App", () => {
   });
 
   it("should edit profile successfully and clear success message after timeout", async () => {
-    // Simulate login
     fireEvent.change(screen.getByPlaceholderText("Email"), {
       target: { value: "jon@doe.com" },
     });
@@ -181,11 +178,11 @@ describe("App", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
-    fireEvent.click(screen.getByText("John Doe")); // Click on the user name
-    fireEvent.click(screen.getByRole("button", { name: /edit profile/i })); // Click edit profile button
+    fireEvent.click(screen.getByText("John Doe")); 
+    fireEvent.click(screen.getByRole("button", { name: /edit profile/i })); 
 
     fireEvent.change(screen.getByPlaceholderText("Full Name"), {
-      target: { value: "Jon Doe Test Name" }, // Clear the full name to make it invalid
+      target: { value: "Jon Doe Test Name" },
     });
 
     fireEvent.click(screen.getByRole("button", { name: /save/i }));
@@ -206,7 +203,6 @@ describe("App", () => {
   });
 
   it("should cancel edit profile operation", async () => {
-    // Simulate login
     fireEvent.change(screen.getByPlaceholderText("Email"), {
       target: { value: "jon@doe.com" },
     });
@@ -215,19 +211,19 @@ describe("App", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /login/i }));
 
-    fireEvent.click(screen.getByText("John Doe")); // Click on the user name
-    fireEvent.click(screen.getByRole("button", { name: /edit profile/i })); // Click edit profile button
+    fireEvent.click(screen.getByText("John Doe")); 
+    fireEvent.click(screen.getByRole("button", { name: /edit profile/i })); 
 
     fireEvent.change(screen.getByPlaceholderText("Full Name"), {
-      target: { value: "Jon Doe Test Name" }, // Clear the full name to make it invalid
+      target: { value: "Jon Doe Test Name" }, 
     });
 
     fireEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
     // Wait for the modal to close and the app to return
     await waitFor(() => {
-      expect(screen.queryByText("User Updated")).toBeNull(); // The modal should have closed
-      expect(screen.getByText("Keeper App")).toBeInTheDocument(); // Check that the app is back
+      expect(screen.queryByText("User Updated")).toBeNull(); 
+      expect(screen.getByText("Keeper App")).toBeInTheDocument();
     });
   });
 
@@ -264,13 +260,12 @@ describe("App", () => {
 
     expect(screen.getByText("Registration Successful")).toBeInTheDocument();
 
-    // Wait for the timeout and assert the message disappears
     await waitFor(
       () => {
         expect(screen.queryByText("Registration Successful")).toBeNull();
       },
       { timeout: 3500 }
-    ); // Slightly longer than the timeout to ensure it clears
+    ); 
   });
 
   it("should handle registration with existing email", () => {
@@ -328,6 +323,6 @@ describe("App", () => {
     const deleteButton = screen.getAllByAltText("Delete")[0];
     fireEvent.click(deleteButton); // Click the delete note button
 
-    expect(screen.queryByText("Note title")).not.toBeInTheDocument(); // Adjust this line based on the actual title of the note being deleted
+    expect(screen.queryByText("Note title")).not.toBeInTheDocument();
   });
 });

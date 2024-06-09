@@ -14,7 +14,7 @@ function FeatureSection({ title, description, images }) {
           showArrows={true} 
           autoPlay={true} 
           infiniteLoop={true} 
-          showThumbs={false} // Hides the thumbnails
+          showThumbs={false}
           className="custom-carousel"
         >
           {images.map((imageSrc, index) => (

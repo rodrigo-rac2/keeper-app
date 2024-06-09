@@ -1,12 +1,10 @@
 // tests/main.test.jsx
 
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react'; // Added fireEvent import
+import { act, fireEvent } from '@testing-library/react'; 
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { test, describe, beforeEach, expect, vi } from 'vitest';
-
-// Correct way to partially mock react-dom/client
 
 vi.mock('react-dom/client', async () => {
   const actual = await vi.importActual('react-dom/client');
@@ -29,12 +27,10 @@ describe('main.tsx', () => {
   });
 
   test('renders main application without crashing', async () => {
-    // Create and append the root element to the document
     const root = document.createElement('div');
     root.id = 'root';
     document.body.appendChild(root);
 
-    // Ensure the root element exists before importing the main file
     expect(document.getElementById('root')).not.toBeNull();
 
     // Monitor console errors (excluding the deprecation warning)
@@ -46,12 +42,10 @@ describe('main.tsx', () => {
         }
       });
 
-    // Dynamically import the main file to trigger the render
     await act(async () => {
-      await import('../src/main'); // Adjust path if needed
+      await import('../src/main');
     });
 
-    // Check for the main page content
     expect(screen.getByText('Welcome to Keeper App')).toBeInTheDocument();
 
     // Simulate login to check for the app container
@@ -61,12 +55,9 @@ describe('main.tsx', () => {
     fireEvent.change(screen.getByPlaceholderText('Password'), {
       target: { value: '123456' },
     });
-    fireEvent.click(screen.getByRole('button', { name: /login/i })); // More specific selector for the login button
+    fireEvent.click(screen.getByRole('button', { name: /login/i })); 
 
-    // Check for the app container using data-testid
     expect(screen.getByTestId('app-container')).toBeInTheDocument();
-
-    // Check for console errors and warnings
     expect(consoleError).not.toHaveBeenCalled();
   });
 });
