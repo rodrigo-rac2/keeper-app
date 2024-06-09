@@ -7,8 +7,8 @@ import Note from "../Note/Note";
 import Button from "../Button/Button";
 import MainPage from "../MainPage/MainPage";
 import UserForm from "../User/UserForm";
-import notesData from "../../../fixtures/notes.json"; // Update path if necessary
-import users from "../../../fixtures/users.json"; // Update path if necessary
+import notesData from "../../../fixtures/notes.json";
+import users from "../../../fixtures/users.json";
 
 function App() {
   const [notes, setNotes] = useState([]);

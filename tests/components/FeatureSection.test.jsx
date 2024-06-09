@@ -34,7 +34,6 @@ describe("FeatureSection", () => {
       />
     );
 
-    // Check initial image
     const firstImage = screen.getAllByAltText("Feature 0")[0];
     expect(firstImage).toBeVisible();
 

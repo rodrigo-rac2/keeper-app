@@ -36,7 +36,7 @@ describe("Login", () => {
     });
     fireEvent.click(screen.getByRole('button', { name: /login/i }));
 
-    fireEvent.click(screen.getByRole('button', { name: /logout/i })); // Click the logout button
+    fireEvent.click(screen.getByRole('button', { name: /logout/i }));
 
     expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
     expect(screen.queryByText("Keeper App")).not.toBeInTheDocument();
