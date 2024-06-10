@@ -16,6 +16,9 @@ For testing purposes, feel free to use the following credentials to view notes a
 - React
 - Icon8 and React Icons
 - Vitest
+- Figma (for design)
+
+Figma Prototypes and Wireframes: [Keeper App](https://www.figma.com/design/9PjKA7Ly44BVJacovY3VeD/Keeper-App---Prototype-%26-Wireframes?node-id=38-2&t=3IbQ7A2t31dB7Ep0-1)
 
 # How to run
 1. Clone the repository
