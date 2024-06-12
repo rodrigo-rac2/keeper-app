@@ -216,20 +216,18 @@ function App() {
             />
           )
         )}
-        <div className="note add-note-card">
-          {addingNote ? (
-            <NoteForm
-              note={newNote}
-              onSave={handleSaveNote}
-              onCancel={handleCancelNote}
-              onChange={setNewNote}
-            />
-          ) : (
-            <div className="add-new-note" onClick={handleAddNote}>
-              +
-            </div>
-          )}
-        </div>
+        {addingNote ? (
+          <NoteForm
+            note={newNote}
+            onSave={handleSaveNote}
+            onCancel={handleCancelNote}
+            onChange={setNewNote}
+          />
+        ) : (
+          <div className="note add-note-container" onClick={handleAddNote}>
+            <div className="add-new-note">+</div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

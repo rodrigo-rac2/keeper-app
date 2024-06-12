@@ -32,6 +32,7 @@
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
   width: 240px;
+  height: 210px;
   margin: 16px;
   float: left;
   position: relative;
@@ -70,7 +71,7 @@
 .edit-note-form {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 210px;
 }
 
 .add-note-form input,
@@ -96,12 +97,27 @@
   flex-grow: 1;
 }
 
-.edit-note-form {
-  min-height: 200px; /* Ensure the edited note form doesn't shrink */
-}
-
 .error-message {
   color: red;
   margin-top: 10px;
   text-align: center;
+}
+
+.add-note-container {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  height: 50px;
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-new-note {
+  font-size: 2em;
+  color: #aaa;
 }
