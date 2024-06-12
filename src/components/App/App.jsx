@@ -7,8 +7,9 @@ import Note from "../Note/Note";
 import Button from "../Button/Button";
 import MainPage from "../MainPage/MainPage";
 import UserForm from "../User/UserForm";
-import notesData from "../../../fixtures/notes.json";
-import users from "../../../fixtures/users.json";
+import NoteForm from "../NoteForm/NoteForm"; // Import the new NoteForm component
+import notesData from "../../../fixtures/notes.json"; // Update path if necessary
+import users from "../../../fixtures/users.json"; // Update path if necessary
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -197,31 +198,14 @@ function App() {
       <div className="notes-container">
         {notes.map((note) =>
           editingNote === note.key ? (
-            <div key={note.key} className="note edit-note-form">
-              <input
-                type="text"
-                placeholder="Title"
-                value={editNote.title}
-                onChange={(e) =>
-                  setEditNote({ ...editNote, title: e.target.value })
-                }
-              />
-              <textarea
-                placeholder="Content"
-                value={editNote.content}
-                onChange={(e) =>
-                  setEditNote({ ...editNote, content: e.target.value })
-                }
-              />
-              <div className="edit-note-buttons">
-                <Button className="save" onClick={handleSaveEditNote}>
-                  Save
-                </Button>
-                <Button className="cancel" onClick={handleCancelEditNote}>
-                  Cancel
-                </Button>
-              </div>
-            </div>
+            <NoteForm
+              key={note.key}
+              note={editNote}
+              onSave={handleSaveEditNote}
+              onCancel={handleCancelEditNote}
+              onChange={setEditNote}
+              isEditing
+            />
           ) : (
             <Note
               key={note.key}
@@ -234,31 +218,12 @@ function App() {
         )}
         <div className="note add-note-card">
           {addingNote ? (
-            <div className="add-note-form">
-              <input
-                type="text"
-                placeholder="Title"
-                value={newNote.title}
-                onChange={(e) =>
-                  setNewNote({ ...newNote, title: e.target.value })
-                }
-              />
-              <textarea
-                placeholder="Content"
-                value={newNote.content}
-                onChange={(e) =>
-                  setNewNote({ ...newNote, content: e.target.value })
-                }
-              />
-              <div className="add-note-buttons">
-                <Button className="save" onClick={handleSaveNote}>
-                  Save
-                </Button>
-                <Button className="cancel" onClick={handleCancelNote}>
-                  Cancel
-                </Button>
-              </div>
-            </div>
+            <NoteForm
+              note={newNote}
+              onSave={handleSaveNote}
+              onCancel={handleCancelNote}
+              onChange={setNewNote}
+            />
           ) : (
             <div className="add-new-note" onClick={handleAddNote}>
               +
