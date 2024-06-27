@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Login.css";
 
-function Login({ onLogin, onRegister, errorMessage }) {
+function Login(props) {
+  const { onLogin, onRegister, errorMessage } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -48,5 +51,11 @@ function Login({ onLogin, onRegister, errorMessage }) {
     </div>
   );
 }
+
+Login.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+  onRegister: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+};
 
 export default Login;

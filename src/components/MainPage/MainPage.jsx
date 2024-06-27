@@ -1,5 +1,6 @@
 // src/components/MainPage.jsx
 import React from "react";
+import PropTypes from "prop-types";
 import Login from "./Login/Login";
 import FeatureSection from "./FeatureSection/FeatureSection";
 import addNoteScreenshot1 from "../../assets/add-note-screenshot-1.png";
@@ -12,7 +13,9 @@ import userProfileScreenshot2 from "../../assets/user-profile-screenshot-2.png";
 import "./MainPage.css";
 import Footer from "../Footer/Footer";
 
-function MainPage({ onLogin, onRegister, errorMessage }) {
+function MainPage(props) {
+  const { onLogin, onRegister, errorMessage } = props;
+
   return (
     <div className="main-page">
       <div className="intro-section">
@@ -53,5 +56,11 @@ function MainPage({ onLogin, onRegister, errorMessage }) {
     </div>
   );
 }
+
+MainPage.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+  onRegister: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+};
 
 export default MainPage;

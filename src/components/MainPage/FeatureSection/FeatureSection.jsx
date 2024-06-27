@@ -1,10 +1,13 @@
 // src/components/FeatureSection.jsx
 import React from "react";
+import PropTypes from "prop-types";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./FeatureSection.css";
 
-function FeatureSection({ title, description, images }) {
+function FeatureSection(props) {
+  const { title, description, images } = props;
+
   return (
     <div className="feature-section">
       <h2>{title}</h2>
@@ -31,5 +34,11 @@ function FeatureSection({ title, description, images }) {
     </div>
   );
 }
+
+FeatureSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default FeatureSection;
