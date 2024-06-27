@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./UserForm.css";
 import Footer from "../Footer/Footer";
 
-function UserForm({
-  user,
-  onSave,
-  onCancel,
-  isEditing,
-  successMessage,
-  errorMessage,
-  setErrorMessage,
-  isEditingProfile,
-}) {
+function UserForm(props) {
+  const {
+    user,
+    onSave,
+    onCancel,
+    isEditing,
+    successMessage,
+    errorMessage,
+    setErrorMessage,
+    isEditingProfile,
+  } = props;
+
   const [email, setEmail] = useState(user ? user.email : "");
   const [fullname, setFullname] = useState(user ? user.fullname : "");
   const [password, setPassword] = useState("");
@@ -128,5 +131,21 @@ function UserForm({
     </div>
   );
 }
+
+UserForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    fullname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+  }),
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  successMessage: PropTypes.string,
+  errorMessage: PropTypes.string,
+  setErrorMessage: PropTypes.func.isRequired,
+  isEditingProfile: PropTypes.bool,
+};
 
 export default UserForm;

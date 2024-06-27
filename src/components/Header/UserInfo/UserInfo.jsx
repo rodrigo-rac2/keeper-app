@@ -1,9 +1,12 @@
 // src/components/UserInfo.jsx
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./UserInfo.css";
 import ProfileModal from "./Modals/ProfileModal";
 
-function UserInfo({ user, onLogout, onEditProfile }) {
+function UserInfo(props) {
+  const { user, onLogout, onEditProfile } = props;
+
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -29,5 +32,16 @@ function UserInfo({ user, onLogout, onEditProfile }) {
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    fullname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+  }),
+  onLogout: PropTypes.func.isRequired,
+  onEditProfile: PropTypes.func.isRequired,
+};
 
 export default UserInfo;
