@@ -27,7 +27,7 @@ Figma Prototypes and Wireframes: [Keeper App](https://www.figma.com/design/9PjKA
 4. Open `http://localhost:5173` in your browser
 
 # Live demo
-You can see a live demo of the app [here](https://rodrigoalvescosta.github.io/keeper-app/)
+You can see a 5-minute live demo of this project [here](https://www.loom.com/share/c55801bd859d489b8cbe9b9da1e138da)
 
 # Screenshots
 > Main page
